@@ -1,0 +1,7 @@
+.popup__info-image {
+    display: flex;
+    width: 120px;
+    height: 120px;
+    margin: 26px auto 0;
+    justify-content: center;
+}
