@@ -2,6 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { Joi, celebrate, errors } = require('celebrate');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const helmet = require('helmet');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const cors = require('cors');
 const router = require('./routes/index');
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
@@ -24,6 +28,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/mestodb')
 
 // подключаем мидлвары, роуты и всё остальное...
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+app.use(helmet());
 app.use(express.json());
 app.use(requestLogger); // подключаем логгер запросов
 app.post('/signin', celebrate({
