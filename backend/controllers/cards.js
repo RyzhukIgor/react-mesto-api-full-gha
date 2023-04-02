@@ -42,8 +42,10 @@ module.exports.deleteCard = (req, res, next) => {
       if (ownerId !== userId) {
         next(new ForBiddenErr('У вас нет доступа к удалению этой карточки'));
       } else {
-        card.remove();
-        res.send({ data: card });
+        Card.findByIdAndDelete(cardId)
+          .then(() => {
+            res.send({ message: 'Карточка удалена' });
+          });
       }
     })
     .catch((error) => {

@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 const ConflictUserErr = require('../utils/ConflictUserErr');
 const ErrBadRequest = require('../utils/ErrBadRequest');
 
-const { JWT_SECRET } = process.env;
+const { JWT_SECRET = 'dev-secret' } = process.env;
 
 const {
   STATUS_CREATED,
@@ -20,7 +20,7 @@ const {
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
-    .then((u) => res.send({ data: u }))
+    .then((users) => res.send({ data: users }))
     .catch(next);
 };
 
@@ -34,7 +34,7 @@ module.exports.getUserId = (req, res, next) => {
       res.status(STATUS_OK).send(user);
     })
     .catch((error) => {
-      if (error.name === 'CastError') {
+      if (error.name === 'ValidationError') {
         next(new ErrBadRequest('Переданы некорректные данные'));
       } else {
         next(error);
