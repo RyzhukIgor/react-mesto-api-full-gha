@@ -1,17 +1,12 @@
-/* eslint-disable import/order */
 require('dotenv').config();
-const User = require('../models/user');
-const ErrorNotFound = require('../utils/ErrorNotFound');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const bcrypt = require('bcryptjs');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const jwt = require('jsonwebtoken');
-// eslint-disable-next-line no-unused-vars
-const mongoose = require('mongoose');
+const ErrorNotFound = require('../utils/ErrorNotFound');
+const User = require('../models/user');
 const ConflictUserErr = require('../utils/ConflictUserErr');
 const ErrBadRequest = require('../utils/ErrBadRequest');
 
-const { JWT_SECRET = 'dev-secret' } = process.env;
+const { JWT_SECRET } = process.env;
 
 const {
   STATUS_CREATED,

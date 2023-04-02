@@ -5,6 +5,7 @@ const { errors } = require('celebrate');
 const cors = require('cors');
 const routes = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const app = express();
 const { PORT = 3000 } = process.env;
@@ -32,16 +33,8 @@ app.get('/crash-test', () => {
 app.use(errorLogger);
 
 app.use(errors());
-app.use((err, req, res, next) => {
-  const { statusCode = 500 } = err;
-  if (statusCode === 500) {
-    res.status(500).send({ message: 'Внутренняя ошибка сервере' });
-    next();
-  } else {
-    res.status(statusCode).send({ message: err.message });
-    next();
-  }
-});
+app.use(errorMiddleware);
+
 app.listen(PORT, () => {
   console.log(`Listing on port ${PORT}`);
 });

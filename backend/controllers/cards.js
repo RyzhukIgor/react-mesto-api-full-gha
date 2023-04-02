@@ -1,5 +1,3 @@
-// eslint-disable-next-line no-unused-vars
-const mongoose = require('mongoose');
 const Card = require('../models/card');
 const ErrorNotFound = require('../utils/ErrorNotFound');
 const ErrBadRequest = require('../utils/ErrBadRequest');
