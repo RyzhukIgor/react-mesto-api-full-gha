@@ -8,7 +8,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 62.84.126.82
+IP 62.84.126.82
 
 Frontend https://mesto-travel.nomoredomains.work/
 
