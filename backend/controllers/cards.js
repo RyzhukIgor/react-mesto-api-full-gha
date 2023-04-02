@@ -35,12 +35,13 @@ module.exports.deleteCard = (req, res, next) => {
     .orFail(() => {
       throw new ErrorNotFound('Пользователь не найден');
     })
+    // eslint-disable-next-line consistent-return
     .then((card) => {
       const ownerId = card.owner.id;
       if (ownerId !== userId) {
         next(new ForBiddenErr('У вас нет доступа к удалению этой карточки'));
       } else {
-        Card.findByIdAndDelete(cardId)
+        return Card.findByIdAndDelete(cardId) // без исключения на 38 строке return не применяется
           .then(() => {
             res.send({ message: 'Карточка удалена' });
           });

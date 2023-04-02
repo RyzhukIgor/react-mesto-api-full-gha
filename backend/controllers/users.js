@@ -29,7 +29,7 @@ module.exports.getUserId = (req, res, next) => {
       res.status(STATUS_OK).send(user);
     })
     .catch((error) => {
-      if (error.name === 'ValidationError') {
+      if (error.name === 'CastError') {
         next(new ErrBadRequest('Переданы некорректные данные'));
       } else {
         next(error);
@@ -106,11 +106,5 @@ module.exports.getInfoUser = (req, res, next) => {
       throw new ErrorNotFound('Пользователь не найден');
     })
     .then((user) => res.send(user))
-    .catch((error) => {
-      if (error.name === 'CastError') {
-        next(new ErrBadRequest('Переданы некорректные данные'));
-      } else {
-        next(error);
-      }
-    });
+    .catch(next);
 };
