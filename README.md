@@ -1,6 +1,6 @@
 [![Tests](https://github.com/yandex-praktikum/react-mesto-api-full-gha/actions/workflows/tests.yml/badge.svg)](https://github.com/yandex-praktikum/react-mesto-api-full-gha/actions/workflows/tests.yml)
 # react-mesto-api-full  
-![hippo]([https://media3.giphy.com/media/aUovxH8Vf9qDu/giphy.gif](https://github.com/RyzhukIgor/react-mesto-api-full-gha/blob/main/frontend/src/images/presents.jpg))
+![hippo](https://github.com/RyzhukIgor/react-mesto-api-full-gha/blob/main/frontend/src/images/presents.jpg)
 
 Репозиторий для приложения проекта `Mesto`.  
 Основной функционал  
